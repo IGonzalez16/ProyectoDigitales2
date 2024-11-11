@@ -17,7 +17,7 @@ initial begin
     rst = 0;
     incremento = 1;
     
-    // Ejecutar 20 ciclos de reloj
+    // ejecutar 20 ciclos de reloj
     repeat (20) begin
         #20;
     end
