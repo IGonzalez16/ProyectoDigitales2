@@ -1,7 +1,15 @@
 uart1:
-	iverilog -o tb.vvp UART1_tb.v
-	vvp tb.vvp
-	gtkwave PROYECFINAL.gtkw
+	iverilog -o tb1.vvp UART1_tb.v
+	vvp tb1.vvp
+	gtkwave UART1_tb.vcd
 
-cleans:
-	rm -rf tb.vvp UART1_tb.vcd
+clean1:
+	rm -rf tb1.vvp UART1_tb.vcd
+
+uart2:
+	iverilog -o tb2.vvp UART2_tb.v
+	vvp tb2.vvp
+	gtkwave GTKWAVEUART2.gtkw
+
+clean2:
+	rm -rf tb2.vvp UART2_tb.vcd
