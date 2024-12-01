@@ -1,7 +1,7 @@
 `include "UART1_dut.v"
-`include "UAR1_tester.v"
+`include "UART1_tester.v"
 
-module UART_tb;
+module UART1_tb;
 
     wire clk;
     wire rst;
@@ -12,7 +12,7 @@ module UART_tb;
     wire [1:0] stop_bit;
     wire serial_out;
 
-    UART_dut dut (
+    UART1_dut dut (
         .clk(clk),
         .rst(rst),
         .idle_bit(idle_bit),
@@ -23,7 +23,7 @@ module UART_tb;
         .serial_out(serial_out)
     );
 
-    UART_tester tester (
+    UART1_tester tester (
         .clk(clk),
         .rst(rst),
         .idle_bit(idle_bit),
@@ -36,7 +36,7 @@ module UART_tb;
 
     initial begin
         $dumpfile("UART1_tb.vcd");
-        $dumpvars(0, UART_tb);
+        $dumpvars(0, UART1_tb);
     end
 
 endmodule

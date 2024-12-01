@@ -1,4 +1,4 @@
-module UART_dut(
+module UART1_dut(
     input wire clk,
     input wire rst,
     input wire idle_bit,
@@ -77,8 +77,3 @@ module UART_dut(
     end
 
 endmodule
-
-
-
-
-

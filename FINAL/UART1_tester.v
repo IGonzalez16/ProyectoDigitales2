@@ -1,4 +1,4 @@
-module UART_tester(
+module UART1_tester(
     output reg clk,
     output reg rst,
     output reg idle_bit,
