@@ -1,11 +1,13 @@
 module UART1_dut(
     input wire clk,
     input wire rst,
+    input wire load,
     input wire idle_bit,
     input wire start_bit,
     input wire [7:0] tx1,
     input wire stop_bit,
-    output reg serial_out
+    output reg serial_out,
+    output reg parallel_in_active
 );
 
     localparam IDLE = 3'b000,
@@ -16,11 +18,17 @@ module UART1_dut(
 
     reg [2:0] state, next_state;
     reg [7:0] data_register; 
-    reg [3:0] contador;   
+    reg [3:0] contador;
+
+    reg [7:0] shift_register; 
+    reg [3:0] bit_counter;    
+    reg serial_out_ready;   
+
     reg parity_bit;    
     reg temp_parity_bit; // Registro auxiliar para la paridad
 
     // Estado actual y lógica secuencial
+    
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             state <= IDLE;
@@ -31,7 +39,7 @@ module UART1_dut(
             temp_parity_bit <= 1'b0;
         end else begin
             state <= next_state;
-
+/*
             case (state)
                 IDLE: serial_out <= 1'b1; 
                 START: serial_out <= 1'b0; 
@@ -40,11 +48,51 @@ module UART1_dut(
                     data_register <= {1'b0, data_register[7:1]}; // Shift right
                 end
                 PARITY: serial_out <= parity_bit;
-                STOP: serial_out <= 1'b1; 
+                STOP: serial_out <= 1'b0; 
             endcase
+*/
+        end 
+    end
+
+    // PISO
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            shift_register <= 8'b0;
+            serial_out <= 1'b0;
+            bit_counter <= 4'b0;
+            parallel_in_active <= 1'b0;
+            serial_out_ready <= 1'b0; 
+        end else if (load) begin
+            
+            shift_register <= tx1;
+            parallel_in_active <= 1'b1; 
+            bit_counter <= 4'b0;        
+            serial_out <= 1'b0;         
+            serial_out_ready <= 1'b0;   
+        end else if (parallel_in_active) begin
+            
+            bit_counter <= bit_counter + 1;
+            
+            if (bit_counter == 4'b0111) begin
+                parallel_in_active <= 1'b0;  
+                serial_out_ready <= 1'b1;    
+            end
+        end else if (serial_out_ready) begin
+            
+            serial_out <= shift_register[7];
+            shift_register <= {shift_register[6:0], 1'b0}; 
+            bit_counter <= bit_counter + 1;
+
+            
+            if (bit_counter == 4'b0111) begin
+                serial_out_ready <= 1'b0; 
+                bit_counter <= 4'b0;      
+            end
         end
     end
 
+
+    
     // Lógica combinacional de transición de estados
     always @(*) begin
         next_state = state;
