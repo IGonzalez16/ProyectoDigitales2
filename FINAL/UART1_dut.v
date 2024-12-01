@@ -79,8 +79,8 @@ module UART1_dut(
             end
         end else if (serial_out_ready) begin
             
-            serial_out <= shift_register[7];
-            shift_register <= {shift_register[6:0], 1'b0}; 
+            serial_out <= shift_register[0];
+            shift_register <= shift_register >> 1; 
             bit_counter <= bit_counter + 1;
 
             
