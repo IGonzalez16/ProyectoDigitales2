@@ -4,7 +4,6 @@ module UART1_dut(
     input wire idle_bit,
     input wire start_bit,
     input wire [7:0] tx1,
-    input wire parity_bit,
     input wire stop_bit,
     output reg serial_out
 );
@@ -18,7 +17,7 @@ module UART1_dut(
     reg [2:0] state, next_state;
     reg [7:0] data_register; 
     reg [3:0] contador;   
-    reg paridad;    
+    reg parity_bit;    
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
@@ -26,7 +25,7 @@ module UART1_dut(
             serial_out <= 1'b0;
             data_register <= 8'b0;
             contador <= 4'b0;
-            paridad <= 1'b0;
+            parity_bit <= 1'b0;
         end else begin
             state <= next_state;
 
@@ -37,7 +36,7 @@ module UART1_dut(
                     serial_out <= data_register[0]; // BMS primero 
                     data_register <= {1'b0, data_register[7:1]}; // Shift right
                 end
-                PARITY: serial_out <= paridad;
+                PARITY: serial_out <= parity_bit;
                 STOP: serial_out <= 1'b1; 
             endcase
         end
@@ -49,19 +48,19 @@ module UART1_dut(
 
         case (state)
             IDLE: if (!idle_bit) next_state = START;
-            START: if (!start_bit) next_state = DATA;
+            START: if (!start_bit || !idle_bit) next_state = DATA;
             DATA: if (contador == 8) next_state = PARITY;
             PARITY: next_state = STOP;
             STOP: next_state = IDLE;
         endcase
     end
 
-    // Paridad
+    // parity_bit
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            paridad <= 1'b0;
+            parity_bit <= 1'b0;
         end else if (state == DATA && contador == 0) begin
-            paridad <= ^tx1; 
+            parity_bit <= ^tx1; 
         end
     end
 
