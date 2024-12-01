@@ -32,18 +32,3 @@ module UART1_tester(
     end
 
 endmodule
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
