@@ -24,7 +24,7 @@ module UART1_tester(
 
         #10 idle_bit = 0; 
         start_bit = 0; 
-        #10 start_bit = 1; tx1 = 8'b10100100; 
+        #10 start_bit = 1; tx1 = 8'b10101100; 
         #90 tx1 = 8'b0; 
         #10 stop_bit = 1; 
         #10 idle_bit = 1; stop_bit = 0; 

@@ -18,7 +18,9 @@ module UART1_dut(
     reg [7:0] data_register; 
     reg [3:0] contador;   
     reg parity_bit;    
+    reg temp_parity_bit; // Registro auxiliar para la paridad
 
+    // Estado actual y lógica secuencial
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             state <= IDLE;
@@ -26,6 +28,7 @@ module UART1_dut(
             data_register <= 8'b0;
             contador <= 4'b0;
             parity_bit <= 1'b0;
+            temp_parity_bit <= 1'b0;
         end else begin
             state <= next_state;
 
@@ -42,8 +45,8 @@ module UART1_dut(
         end
     end
 
+    // Lógica combinacional de transición de estados
     always @(*) begin
-
         next_state = state;
 
         case (state)
@@ -55,12 +58,21 @@ module UART1_dut(
         endcase
     end
 
-    // parity_bit
+    // Cálculo de paridad
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            parity_bit <= 1'b0;
+            temp_parity_bit <= 1'b0;
         end else if (state == DATA && contador == 0) begin
-            parity_bit <= ^tx1; 
+            temp_parity_bit <= ^tx1;
+        end
+    end
+
+    // Activación de parity_bit en el estado PARITY
+    always @(*) begin
+        if (state == PARITY) begin
+            parity_bit = temp_parity_bit; 
+        end else begin
+            parity_bit = 1'b0; 
         end
     end
 
