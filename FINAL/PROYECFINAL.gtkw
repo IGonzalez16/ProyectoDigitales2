@@ -1,21 +1,23 @@
 [*]
 [*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
-[*] Sun Dec  1 21:45:57 2024
+[*] Sun Dec  1 22:51:11 2024
 [*]
 [dumpfile] "/home/isai/Documentos/GitHub/ProyectoDigitales2/FINAL/UART1_tb.vcd"
-[dumpfile_mtime] "Sun Dec  1 21:45:53 2024"
-[dumpfile_size] 2296
+[dumpfile_mtime] "Sun Dec  1 22:50:46 2024"
+[dumpfile_size] 2105
 [savefile] "/home/isai/Documentos/GitHub/ProyectoDigitales2/FINAL/PROYECFINAL.gtkw"
 [timestart] 0
-[size] 1854 1001
-[pos] -1 -1
-*-5.292566 37 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[sst_width] 40
+[size] 1390 739
+[pos] 109 645
+*-5.606273 41 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 278
 [signals_width] 150
-[sst_expanded] 0
-[sst_vpaned_height] 280
+[sst_expanded] 1
+[sst_vpaned_height] 183
+@29
+UART1_tb.clk_sis
 @28
-UART1_tb.clk
+UART1_tb.clk_uart
 UART1_tb.rst
 UART1_tb.data_in[7:0]
 UART1_tb.start_bit
