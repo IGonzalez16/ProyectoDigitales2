@@ -4,6 +4,7 @@ module UART_tester(
     output reg rst,
     output reg start_bit,
     output reg [7:0] data_in,
+    output reg [7:0] data_in_2,
     output reg stop_bit
 );
 
@@ -32,34 +33,24 @@ module UART_tester(
         stop_bit = 1;
         #10 stop_bit = 0; 
         #10 rst = 1;
-        #10 rst = 0;
 
-        #10;
+
         //UART2 -> UART1
-        rst = 1;
+        #10 rst = 1;
         start_bit = 1;
-        data_in = 8'b00000000;
+        data_in_2 = 8'b00000000;
         stop_bit = 0;
 
         #10 rst = 0;
 
         start_bit = 0; 
-        #10 start_bit = 1; data_in = 8'b01010001; 
-        #90 data_in = 8'b0; 
+        #10 start_bit = 1; data_in_2 = 8'b1000010; 
+        #90 data_in_2 = 8'b0; 
         stop_bit = 1;
         #10 stop_bit = 0; 
         #10 rst = 1;
-        #10 rst = 0;
-        #200  
-        
-        
-        
-        
-        
-        
-        
-        
-        
+  
+        #10;
         
         $finish;
         

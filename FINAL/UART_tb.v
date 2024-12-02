@@ -9,13 +9,16 @@ module UART_tb;
     wire rst;
     wire start_bit;
     wire [7:0] data_in;
+    wire [7:0] data_in_2;
     wire stop_bit;
     wire tx2;
+    wire tx1;
     wire rx2;
+    wire rx1;
     wire serial1;
     wire serial2;
 
-    UART1_dut dut (
+    UART1_dut dut1 (
         .clk_sis(clk_sis),
         .clk_uart(clk_uart),
         .rst(rst),
@@ -26,12 +29,12 @@ module UART_tb;
         .rx1(serial2)
     );
 
-    UART2_dut dut (
+    UART2_dut dut2 (
         .clk_sis(clk_sis),
         .clk_uart(clk_uart),
         .rst(rst),
         .start_bit(start_bit),
-        .data_in(data_in),
+        .data_in_2(data_in_2),
         .stop_bit(stop_bit),
         .tx2(serial2),
         .rx2(serial1)
@@ -43,6 +46,7 @@ module UART_tb;
         .rst(rst),
         .start_bit(start_bit),
         .data_in(data_in),
+        .data_in_2(data_in_2),
         .stop_bit(stop_bit)
     );
 
