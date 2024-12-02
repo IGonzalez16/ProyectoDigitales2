@@ -1,4 +1,4 @@
-module UART1_tester(
+module UART_tester(
     output reg clk_uart,
     output reg clk_sis,
     output reg rst,
