@@ -1,4 +1,4 @@
-`include "UART1_dut.v"
+`include "UART_dut.v"
 `include "UART2_dut.v"
 `include "UART_tester.v"
 
