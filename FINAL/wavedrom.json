@@ -1,0 +1,16 @@
+{
+  signal: [
+    { name: "clk_sis", wave: "p............................."},
+    { name: "clk_uart", wave: "p..............", period: 2}, 
+    { name: "rst", wave: "hl...........h.", period: 2 },
+    { name: "idle_bit", wave: "hl...........h.", period: 2 },
+    { name: "start_bit", wave: "hlh............", period: 2 },
+    { name: "data_in", wave: ".22........x...", data: ["01011011"], period: 2 },
+    { name: "parity_bit", wave: "l.........hl...", data: ["", "", "", "", "", "", "", "", "1", "0"], period: 2 },
+    { name: "stop_bit", wave: "l..........hl..", period: 2 },
+    { name: "state", wave: "234.......52.2.", data: ["IDLE", "START", "DATA", "PARITY", "STOP", "IDLE"], period: 2 },
+    { name: "tx1", wave: "hlh.lh.lhlh....", period: 2},
+    { name: "rx2", wave: "hlh.lh.lhlh....", period: 2},
+    { name: "data_in", wave: "........22.....x", data: ["01011011"], period: 2 },
+  ]
+}
