@@ -1,40 +1,41 @@
 [*]
 [*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
-[*] Mon Dec  2 03:48:21 2024
+[*] Tue Dec  3 23:34:17 2024
 [*]
-[dumpfile] "/home/daniel/Documents/GitHub/ProyectoDigitales2/FINAL/UART_tb.vcd"
-[dumpfile_mtime] "Mon Dec  2 03:46:54 2024"
-[dumpfile_size] 4369
-[savefile] "/home/daniel/Documents/GitHub/ProyectoDigitales2/FINAL/GTKFINAL.gtkw"
+[dumpfile] "/home/daniel/Documents/GitHub/ProyectoDigitales2/final/UART_tb.vcd"
+[dumpfile_mtime] "Tue Dec  3 23:31:16 2024"
+[dumpfile_size] 4399
+[savefile] "/home/daniel/Documents/GitHub/ProyectoDigitales2/final/GTKFINAL.gtkw"
 [timestart] 0
-[size] 1214 721
-[pos] 25 22
-*-6.193320 280 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1161 600
+[pos] -1 -1
+*-6.296483 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] UART_tb.
 [sst_width] 278
-[signals_width] 142
+[signals_width] 150
 [sst_expanded] 1
-[sst_vpaned_height] 121
+[sst_vpaned_height] 157
 @28
 UART_tb.clk_sis
 UART_tb.clk_uart
 UART_tb.rst
 UART_tb.dut1.idle_bit
 UART_tb.start_bit
-UART_tb.data_in[7:0]
+UART_tb.data_in_1[7:0]
 UART_tb.data_in_2[7:0]
-UART_tb.dut1.parity_bit
+UART_tb.dut1.parity_bit_1
+UART_tb.dut2.parity_bit_2
 UART_tb.stop_bit
 @22
-UART_tb.dut2.state[2:0]
+UART_tb.dut1.state[2:0]
 @28
 UART_tb.dut1.tx1
 UART_tb.dut2.rx2
 UART_tb.dut2.tx2
 UART_tb.dut1.rx1
 @29
-UART_tb.dut2.data_out[7:0]
+UART_tb.dut2.data_out_2[7:0]
 @28
-UART_tb.dut1.data_out[7:0]
+UART_tb.dut1.data_out_1[7:0]
 [pattern_trace] 1
 [pattern_trace] 0
